@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>vue</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+
+	<div id="app">
+		<h1>Hello App!</h1>
+		<button type="button" @click="push">添加路由</button>
+		<button type="button" @click="replace">切换路由</button>
+		<div>
+			<router-link to='/home'>主页</router-link>
+			<router-link to='/news'>新闻</router-link>
+		</div>
+		<router-view></router-view>
+	</div>
+	<script>
+		//组件
+		var Home={
+			template:'<h1>这里是主页</h1>'
+		};
+		var News={
+			template:'<h1>这里是新闻</h1>'
+		};
+		
+		//配置路由
+		const routes=[
+			{path:'/home',component:Home},
+			{path:'/news',component:News},
+			{path:'*',component:Home}
+		];
+		//创建路由实例
+		const router=new VueRouter({
+			routes
+		})
+		//最后挂到vue上
+		const app=new Vue({
+			router,
+			el:'#app',
+			methods:{
+				push:function (){
+					router.push({path:'/home'})//添加路由,本质上就是添加了一条浏览器历史纪录
+				},
+				replace:function (){
+					router.replace({path:'/home'})//替换路由
+				},
+			}
+		})
+	</script>
+</body>
+
+</html>

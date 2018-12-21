@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>面向对象-工厂模式</title>
+</head>
+
+<body>
+
+	<script type="text/javascript">
+		
+		function fn(name,age){//fn就是构造函数,工厂模式由三部分组成:原料、加工、出厂,
+							  //工厂模式缺点:1、没有new,2、函数重复定义-资源浪费
+			//原料
+			var obj=new Object();
+			
+			//加工
+			obj.name=name;
+			obj.age=age;
+			obj.showName=function(){
+				console.log(this.name)
+			};
+			obj.showAge=function(){
+				console.log(this.age)
+			};
+			
+			//出厂
+			return obj;
+		};
+		var obj=fn('张三','20');
+		var obj2=fn('李四','30')
+		obj.showName()
+		obj.showAge()
+		obj2.showName()
+		obj2.showAge()
+	</script>
+</body>
+
+</html>

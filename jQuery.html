@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>jQuery</title>
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			*{margin: 0;padding: 0;list-style: none;}
+			.box ul li{width: 200px;height: 200px;background: red;margin-bottom: 10px;}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<ul>
+				<li><a href="#">111</a></li>
+				<li><a href="#">222</a></li>
+				<li><a href="#">333</a></li>
+				<li><a href="#">444</a></li>
+				<li><a href="#">555</a></li>
+			</ul>
+			<input type="text" name="a aa" id="" value="" />
+		</div>
+		<script type="text/javascript">
+			window.onload=function(){
+				console.log($('ul li').eq(-2).text());
+				function aa(value){
+				/*	if(value>-10){
+						return value='-'+value;
+					}else if(value>-10){*/
+						
+//					}
+					if(value==0){
+						return value=value.toFixed(2);
+					}else if(value<10){
+						return value='0.0'+value
+					}else if(value<100){
+						return value='0.0'+value
+					}else{
+						return value/1000
+					}
+				}
+				console.log(aa(100000))
+				console.log(8888/1000)
+			};
+		</script>
+	</body>
+</html>

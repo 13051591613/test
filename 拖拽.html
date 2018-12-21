@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#box, #box1 {
+			width: 200px;
+			height: 200px;
+			background: red;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="box"></div>
+	<div id="box1"></div>
+	<script>
+		window.onload = function () {
+				new Darg('box')
+				new childDarg('box1')
+			};
+			
+			function Darg(Id){
+				this.box=document.getElementById(Id);
+				this.init();
+			};
+			
+			Darg.prototype.init=function(){
+				var _this=this;
+				this.box.onmousedown=function(ev){
+					_this.fnDown(ev);
+				};	
+			};
+			
+			Darg.prototype.fnDown=function(ev){
+				var _this=this;
+				document.onmousemove=function(ev){
+					_this.fnMove(ev)
+				};
+				document.onmouseup=function(){
+					_this.fnUp();
+				}
+			};
+			
+			Darg.prototype.fnMove=function(ev){
+				var e=ev||window.event;
+				this.box.style.left=e.clientX-(this.box.offsetWidth/2)+'px'
+				this.box.style.top=e.clientY-(this.box.offsetHeight/2)+'px'
+			};
+			Darg.prototype.fnUp=function(){
+				document.onmousemove=null;
+			}
+			
+			//childDarg继承Darg
+			function childDarg(Id){
+				//继承属性
+				Darg.call(this,Id);
+			};
+				//继承方法
+			for(var i in Darg.prototype){
+				childDarg.prototype[i]=Darg.prototype[i]
+			};
+			childDarg.prototype.fnMove=function(ev){
+				var e=ev||window.event;
+				var l=e.clientX-(this.box.offsetWidth/2);
+				var t=e.clientY-(this.box.offsetHeight/2);
+				if(l<=0){
+					l=0;
+				}else if(l>=document.body.offsetWidth-this.box.offsetWidth){
+					l=document.offsetWidth-this.box.offsetWidth;
+				}
+				this.box.style.left=l+'px';
+				this.box.style.top=e.clientY-(this.box.offsetHeight/2)+'px'
+			}
+	</script>
+</body>
+
+</html>

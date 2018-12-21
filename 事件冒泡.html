@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件冒泡与事件捕获</title>
+    <style>
+        #parent{
+            width: 500px;
+            height: 500px;
+            background: #000;}
+        #child{
+            width: 200px;
+            height: 200px;
+            background: red;}
+        ul{
+            width: 1000px;
+            height:300px;
+            background: #000;
+            color: #aaa;
+        }
+        li{
+            width: 50px;
+            height: 50px;
+            background: red;
+            margin: 10px;
+            list-style: none;
+        }
+    </style>
+
+</head>
+<body>
+<div id="parent">
+    　　<div id="child" class="child">
+            <a id="a" href="www.baidu.com">百度</a>
+        </div>
+</div>
+<ul id="ul">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+<script>
+    window.onload=function(){
+
+
+    // parent.onclick=function(e){
+    //     var ev=e||event;
+    //     alert('我是parent')
+    //     // ev.cancelBubble=true;
+    // };
+    // child.onclick=function(e){
+    //     var ev=e||event;
+    //     alert('我是child')
+    //     // ev.cancelBubble=true;//取消冒泡
+    //     //ev.stopPropagation()//取消冒泡
+    //     // return false;//取消默认事件、同时取消冒泡
+    // };
+    // a.onclick=function(ev){
+    //     var e=ev||event;
+    //     // e.preventDefault()//阻止默认事件但不阻止冒泡
+    // }
+    // document.getElementById("parent").addEventListener("click",function(e){
+    //     alert("parent事件被触发，"+this.id);
+    // });
+    // document.getElementById("child").addEventListener("click",function(e){
+    //     alert("child事件被触发，"+this.id)
+    // })
+    ul.onclick=function(ev){
+        var e=ev||window.event;
+        var target=e.target||e.srcElement;
+        if(target.nodeName == 'LI') {//arget.nodeName 触发事件元素名
+            console.log(target.innerHTML)
+        }
+    };
+    }
+        </script>
+</body>
+</html>

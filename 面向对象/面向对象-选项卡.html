@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>选项卡</title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#box input{background: red;width: 30px;height: 20px;border: none;color: #fff;}
+			#box div{background: red;width: 200px;height: 200px;display: none;margin-top: 10px;text-align: center;line-height: 200px;
+			color: #fff;}
+			#box .active{background: #000000;}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<input class="active" type="button" value="1" />
+			<input type="button" value="2" />
+			<input type="button" value="3" />
+			<div style="display: block;">11</div>
+			<div>222</div>
+			<div>333</div>
+		</div>
+		<script type="text/javascript">
+			window.onload=function(){
+				function fn(Id){
+					var _this=this;
+					this.oBox=document.getElementById(Id)
+					this.aInp=this.oBox.getElementsByTagName('input');
+					this.aDiv=this.oBox.getElementsByTagName('div');
+					for(var i=0;i<this.aDiv.length;i++){
+						this.aInp[i].index=i;
+						this.aInp[i].onclick=function(){
+							_this.fna(this);
+						}
+					};
+				};
+				fn.prototype.fna=function(_this){
+						for(var j=0;j<this.aDiv.length;j++){
+							this.aDiv[j].style.display='none';
+							this.aInp[j].className='';
+						}
+						_this.className='active';
+						this.aDiv[_this.index].style.display='block';
+				};
+				new fn('box');
+				
+				
+			}
+		</script>
+	</body>
+</html>

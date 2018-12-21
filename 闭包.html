@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+		body{font-size: 20px;}
+		body p:nth-of-type(1){font-size:1em;}
+		body p:nth-of-type(2){font-size:2em;}
+		body p:nth-of-type(3){font-size:3em;}
+    </style>
+</head>
+<body>
+	<button id="btn">aaa</button>
+	<p>11111111111111111</p>
+	<p>22222222222222222</p>
+	<p>33333333333333333</p>
+	<a id="a" href="#">12</a>
+	<a id="b" href="#">14</a>
+	<a id="c" href="#">16</a>
+<script>
+	
+	
+	window.onload=function(){
+	function sum(arr){
+		return arr.reduce(function(x,y){
+			return x + y;
+		})
+	}
+	console.log(sum([1,2,3,4,5]))
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+// function f1(){
+// 	var a=9;
+// 	f3=function(){a=a+1}
+// 	function f2(){
+// 		console.log(a)
+// 	};
+// 	return f2;
+// };
+// var bar=f1();
+// bar();
+// f3();
+// bar();
+// console.log(a)
+// 　　var name = "The Window";
+// 
+// 　　var object = {
+// 　　　　name : "My Object",
+// 　　　　getNameFunc : function(){
+// 　　　　　　return function(){
+// 　　　　　　　　return this.name;
+// 　　　　　　};
+// 　　　　}
+// 　　};
+// 
+// 　　console.log(object.getNameFunc()());
+// 
+// 　　var object = {
+// 　　　　name : "My Object",
+// 　　　　getNameFunc : function(){
+// 　　　　　　var that = this;
+// 　　　　　　return function(){
+// 　　　　　　　　return that.name;
+// 　　　　　　};
+// 　　　　}
+// 　　};
+// 
+// 　　console.log(object.getNameFunc()());
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>兄弟组件通信</title>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<com-a></com-a>
+			<com-b></com-b>
+			<com-c></com-c>
+		</div>
+		<script type="text/javascript">
+			window.onload=function(){
+				//创建vue实例
+				const vm=new Vue();
+				
+				//组件模版
+				var A={
+					data(){
+						return {
+							a:'我是A组件的数据'
+						}
+					},
+					template:`
+						<div>
+							<span>我是A组件----------{{a}}</span>
+							<button @click="send">把我的数据传给C</button>
+						</div>
+					`,
+					methods:{
+						send:function(){
+							vm.$emit('msg-a',this.a)
+						}
+					}
+				};
+				var B={
+					data(){
+						return {
+							a:'我是B组件的数据'
+						}
+					},
+					template:`
+						<div>
+							<span>我是B组件----------{{a}}</span>
+							<button @click="send">把我的数据传给C</button>
+						</div>
+					`,
+					methods:{
+						send:function(){
+							vm.$emit('msg-b',this.a)
+						}
+					}
+				};
+				var C={
+					data (){
+						return{
+							a:'',
+							b:''
+						}
+					},
+					template:`
+						<div>
+							<span>我是C组件</span>
+							<div>A组件数据---------{{a}}</div>
+							<div>B组件数据---------{{b}}</div>
+						</div>
+					`,
+						mounted(){
+							vm.$on('msg-a',function(data){
+								this.a=data
+							}.bind(this));
+							vm.$on('msg-b',function(data){
+								this.b=data
+							}.bind(this));
+						}
+				};
+				const app=new Vue({
+					components:{
+						'com-a':A,
+						'com-b':B,
+						'com-c':C
+					}
+				}).$mount('#app')
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>父-子组件通信</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+	<template id="child">
+		<div>
+			<button @click="chege">按钮</button>
+			<span>{{b}}</span>
+			<span>我是子组件--------------{{msg.a}}</span>
+		</div>
+	</template>
+	<div id="app">
+		<h1>父组件-->{{myData.a}}</h1>
+		<child-com :msg='myData'></child-com>
+	</div>
+	<script>
+		
+		const app=new Vue({
+			el:'#app',
+			data:{
+				myData:{
+					a:'我是父组件的数据'
+				}
+			},
+			components:{
+				'child-com':{
+					data:{
+						b:'子组件数据'
+					},
+					props:['msg'],
+					template:'#child',
+					methods:{
+						chege:function(){
+							this.msg.a='被改变了'
+						}
+					}
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

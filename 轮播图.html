@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>拖拽</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#box{
+			width: 500px;
+			height: 300px;
+			border: 1px solid #AAAAAA;
+			margin: 0 auto;
+			overflow: hidden;
+			position: relative;
+		}
+		ul{
+			width: 500px;
+			height: 300px;
+			position: absolute;
+			left: 0;
+		}
+		li{
+			width: 500px;
+			height: 300px;
+			float: left;
+		}
+		li a img{
+			height: 100%;
+			width: 100%;
+		}
+		bottom{
+			position: absolute;
+			z-index: 99;
+			width: 30px;
+			height: 20px;
+			background: #AAAAAA;
+			font-size: 12px;
+			color: #FF0000;
+			cursor:pointer;
+		}
+		bottom:nth-of-type(1){
+			left: 0px;
+			top: 140px;
+			
+		}
+		bottom:nth-of-type(2){
+			right: 0px;
+			top: 140px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="box">
+		<ul id="ul">
+			<li><a href="#"><img src="img/banner.jpg" ></a></li>
+			<li><a href="#"><img src="img/banner.jpg" ></a></li>
+			<li><a href="#"><img src="img/banner.jpg" ></a></li>
+			<li><a href="#"><img src="img/banner.jpg" ></a></li>
+		</ul>
+		<bottom>next</bottom>
+		<bottom>prex</bottom>
+	</div>
+	<script>
+		window.onload = function () {
+			var box=document.getElementById('box');
+			var oUl=document.getElementById('ul');
+			var aLi=oUl.getElementsByTagName('li');
+			var itm=1,time=null;
+			oUl.style.width=aLi[0].offsetWidth*aLi.length+'px';
+			oUl.innerHTML+=oUl.innerHTML;
+			time=setInterval(function(){
+				itm++;
+				oUl.style.left=-itm+'px';
+				if(oUl.offsetLeft<=-oUl.offsetWidth/2){
+					oUl.style.left=0+'px';
+				}
+			},10)
+		}
+	</script>
+</body>
+
+</html>

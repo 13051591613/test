@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>左中右布局</title>
+		<style>
+			*{margin: 0;padding: 0;}
+			.left{width: 200px;height: 500px;background: red;float: left;}
+			.conter{
+					height: 500px;
+					float: left;
+					background: #000000;
+					width:-moz-calc(100% - 400px);
+					width:-webkit-calc(100% - 400px);
+					width: calc(100% - 400px );
+			}
+			.right{
+					width: 200px;
+					height: 500px;
+					background: yellow;
+					float: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="left">左</div>
+		<div class="conter">中</div>
+		<div class="right">右</div>
+	</body>
+</html>

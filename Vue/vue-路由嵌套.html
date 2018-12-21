@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>vue</title>
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+
+<body>
+
+	<div id="app">
+		<h1>Hello App!</h1>
+		<div>
+			<router-link to='/home'>主页</router-link>
+			<router-link to='/user'>用户</router-link>
+		</div>
+		<router-view></router-view>
+		
+	</div>
+	<script>
+		//组件
+		var Home={
+			template:'<h1>这里是主页</h1>'
+		};
+		
+		var User={
+			template:`
+					<div>
+						<ul>
+							<li><router-link to='/user/cy/age/10'>张三</router-link></li>
+							<li><router-link to='/user/hh/age/20'>哈哈</router-link></li>
+						</ul>
+						<router-view></router-view>
+					</div>	
+			`
+		};
+		
+		const userDtaild={
+			template:'<h1>{{$route.params.username}}</h1>'
+		}
+		//配置路由
+		const routes=[
+			{path:'/home',component:Home},
+			{
+				path:'/user',
+				component:User,
+				children:[
+					{
+					path:':username/age/:age',
+					component:userDtaild}
+					]
+			},
+			{path:'*',redirect:'/Home'}
+		];
+		//创建路由实例
+		const router=new VueRouter({
+			routes
+		})
+		//最后挂到vue上
+		const app=new Vue({
+			router,
+			el:'#app'
+		})
+	</script>
+</body>
+
+</html>

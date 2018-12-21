@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>过滤器</title>
+		<script src="https://unpkg.com/vue/dist/vue.js"></script>
+	</head>
+
+	<body>
+		<div id="app">
+			<ul v-for='itme in filterdData'>
+				<li><span>{{itme.num}}</span><span>{{itme.name}}</span></li>
+			</ul>
+			<button @click="aa">过滤</button>
+		</div>
+		<script type="text/javascript">
+			let vm
+			let app = new Vue({
+						el: '#app',
+						data() {
+							vm = this
+							return {
+								msg: [{
+									num: 99,
+									name: '嘻嘻'
+								}, {
+									num: -99,
+									name: '哈哈'
+								}, {
+									num: 99,
+									name: '嘻嘻'
+								}],
+								Name: '哈哈'
+							}
+						},
+						computed: {
+							filterdData() {
+								return this.msg.filter(function(itme){
+									return itme.name==vm.Name
+								})
+							},
+						},
+							methods: {
+								aa() {
+									this.Name = '嘻嘻';
+									console.log(this.Name)
+								}
+							},
+						})
+		</script>
+	</body>
+
+</html>

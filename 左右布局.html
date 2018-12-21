@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<style>
+			*{margin: 0;padding: 0;}
+			.left{width: 300px;height: 500px;background: red;float: left;}
+			.right{
+					height: 500px;
+					background: yellow;
+					float: left;
+					width:-moz-calc(100% - 300px);
+					width:-webkit-calc(100% - 300px);
+					width: calc(100% - 300px );
+}
+		</style>
+	</head>
+	<body>
+		<div class="left"></div>
+		<div class="right"></div>
+	</body>
+</html>
